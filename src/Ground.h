@@ -36,6 +36,11 @@ public:
         columns = (get_w() - 2 * border_size) / item_size;
     }
 
+    int get_item_color(void) const
+    {
+        return item_color;
+    }
+
     void draw(Screen *_s, int _x0 = 0, int _y0 = 0);
 
     void draw_item(int i, int j, int color);

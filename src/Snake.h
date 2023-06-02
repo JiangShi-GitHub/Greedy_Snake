@@ -4,6 +4,7 @@
 #include <iostream>
 #include <list>
 #include <thread>
+#include <utility>
 #include "Ground.h"
 
 class Body_item
@@ -50,11 +51,11 @@ public:
 enum MovDir
 {
     MovDir_Unkown = 0,
-    MovDir_Stop,
-    MovDir_Left,
-    MovDir_Right,
-    MovDir_Up,
-    MovDir_Down
+    MovDir_Stop = 0,
+    MovDir_Left = 1,
+    MovDir_Right = 2,
+    MovDir_Up = 3,
+    MovDir_Down = 4
 };
 
 enum Color_t
@@ -80,6 +81,8 @@ private:
     std::recursive_mutex m;
 
     std::thread *t;
+
+    std::pair<int, int> dir_num[5] = {{0, 0}, {0 ,-1}, {0, 1}, {-1, 0}, {1, 0}};
 
 public:
     Snake(Ground *g = nullptr);

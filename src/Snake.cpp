@@ -43,8 +43,10 @@ void Snake::move()
         std::unique_lock<std::recursive_mutex> l(m);
 
         //再移动
-
-
+        Body_item b1(body.front().get_i() + dir_num[dir].first, body.front().get_j() + dir_num[dir].second, color);
+        g->draw_item(body.back().get_i(), body.back().get_j(), g->get_item_color());
+        body.pop_back();
+        body.push_front(b1);
 
         draw();
     }
