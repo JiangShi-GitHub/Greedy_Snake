@@ -1,31 +1,100 @@
 #ifndef __SNAKE_H__
 #define __SNAKE_H__
-#include <queue>
-#include<utility>
-#include "Screen.h"
+
+#include <iostream>
+#include <list>
+#include <thread>
+#include <utility>
+#include "Ground.h"
+
+class Body_item
+{
+private:
+    int i, j;
+    int color;
+public:
+    Body_item(int _i, int _j, int _c):
+              i(_i), j(_j), color(_c)
+    {}
+
+    void set_i(int _i)
+    {
+        i = _i;
+    }
+
+    void set_j(int _j)
+    {
+        j = _j;
+    }
+
+    int get_i(void) const
+    {
+        return i;
+    }
+
+    int get_j(void) const
+    {
+        return j;
+    }
+
+    void set_c(int _c)
+    {
+        color = _c;
+    }
+
+    int get_c(void) const
+    {
+        return color;
+    }
+};
+
+enum MovDir
+{
+    MovDir_Unkown = 0,
+    MovDir_Stop = 0,
+    MovDir_Left = 1,
+    MovDir_Right = 2,
+    MovDir_Up = 3,
+    MovDir_Down = 4
+};
+
+enum Color_t
+{
+    Color_Red = 0xFF0000,
+    Color_Green = 0x00FF00
+};
 
 class Snake
 {
 private:
-    int x;
-    int y;
-    int Snake_length;
-    int add_num;
-    int Snake_color;
-    std::pair<int,int> dir[4] = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
-    std::queue<std::pair<int,int>> q;
+    std::list<Body_item> body;
+
+    int color;
+    MovDir dir;
+
+    int speed;
+
+    int acc;
+
+    Ground *g;
+
+    std::recursive_mutex m;
+
+    std::thread *t;
+
+    std::pair<int, int> dir_num[5] = {{0, 0}, {0 ,-1}, {0, 1}, {-1, 0}, {1, 0}};
+
 public:
-    Snake(int x0, int y0, int color);
+    Snake(Ground *g = nullptr);
 
-    void set_Snake_color(int color);
+    ~Snake()
+    {
+        delete t;
+    }
 
-    void move(int dir_select);
+    void draw();
 
-    void eat(int count);
-
-    void die();
-    
-    void draw_Snake(Screen *s, int x0, int y0);
+    void move(void); //蛇移动的线程函数
 };
 
 #endif

@@ -1,50 +1,53 @@
-#include <iostream>
-#include <queue>
-
+#include <mutex>
 #include "Snake.h"
-#include "Rectangle.h"
-#include "Ground.h"
-using namespace std;
 
-#define fi first
-#define se second
-
-Snake::Snake(int x0, int y0, int color)
+Snake::Snake(Ground *_g)
 {
-    x = x0;
-    y = y0;
-    Snake_length = 10;
-    add_num = 0;
-    Snake_color = color;
-    q.push({x, y});
+    g = _g;
+    color = Color_Red;
+    dir = MovDir_Left;
+    speed = 400;
+    acc = 50;
+
+    Body_item b1(10, 10, color), b2(10, 11, color);
+
+    body.push_back(b1);
+    body.push_back(b2);
+
+    draw();
 }
 
-void Snake::set_Snake_color(int color)
+void Snake::draw()
 {
-    Snake_color = color;
+    std::unique_lock<std::recursive_mutex> l(m);
+
+    if(g == nullptr)
+    {
+        return;
+    }
+
+    for(Body_item x:body)
+    {
+        g -> draw_item(x.get_i(), x.get_j(), x.get_c());
+    }
 }
 
-void Snake::move(int dir_select)
+void Snake::move()
 {
-    x = x + dir[dir_select].fi;
-    y = y + dir[dir_select].se;
-    q.push({x, y});
-    if(!add_num) q.pop();
-    else add_num--;
-}
+    while(1)
+    {
+        //先sleep一段时间
+        std::chrono::milliseconds s(speed);
+        std::this_thread::sleep_for(s);
 
-void Snake::eat(int count)
-{
-    add_num = count;
-}
+        std::unique_lock<std::recursive_mutex> l(m);
 
-void Snake::draw_Snake(Screen *s, int x0, int y0)
-{
-    Rectangle *r = new Rectangle(x0, y0);
-    
-    // for(auto x:q)
-    // {
-    //     r -> draw(s, x.fi, x.se, Snake_color);
-    // }
-}
+        //再移动
+        Body_item b1(body.front().get_i() + dir_num[dir].first, body.front().get_j() + dir_num[dir].second, color);
+        g->draw_item(body.back().get_i(), body.back().get_j(), g->get_item_color());
+        body.pop_back();
+        body.push_front(b1);
 
+        draw();
+    }
+}
