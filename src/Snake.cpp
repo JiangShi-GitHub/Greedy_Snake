@@ -49,7 +49,7 @@ void Snake::move()
         body.push_front(b1);
 
 
-//she
+
         draw();
     }
 }

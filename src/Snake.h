@@ -67,17 +67,18 @@ enum Color_t
 class Snake
 {
 private:
-    std::list<Body_item> body;
+    std::list<Body_item> body;//"蛇身"
 
-    int color;
-    MovDir dir;
+    int color;//“蛇头的颜色”
+    MovDir dir;//蛇移动的方向
 
-    int speed;
+    int speed;//蛇移动的速度，每隔 多少毫秒 移动一格
 
-    int acc;
+    int acc;//"加速度/减速度"
 
-    Ground *g;
+    Ground *g;//蛇在哪个草坪上
 
+    //std::recursive_mutx 递归互斥锁，允许 “锁了又锁”
     std::recursive_mutex m;
 
     std::thread *t;
