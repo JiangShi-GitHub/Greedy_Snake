@@ -70,6 +70,7 @@ private:
     std::list<Body_item> body;
 
     int color;
+    int head_color;
     MovDir dir;
 
     int speed;
@@ -85,7 +86,7 @@ private:
     std::pair<int, int> dir_num[5] = {{0, 0}, {0 ,-1}, {0, 1}, {-1, 0}, {1, 0}};
 
 public:
-    Snake(Ground *g = nullptr);
+    Snake(Ground *g = nullptr, int _color = Color_Red, int _head_color = 0x049C12);
 
     ~Snake()
     {
