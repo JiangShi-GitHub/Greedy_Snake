@@ -17,7 +17,21 @@ void Ground::draw(Screen *_s, int _x0, int _y0)
     rb.draw(s, x0 + get_w() - border_size, y0 + border_size, border_color);
     rd.draw(s, x0, y0 + border_size, border_color);
 
-    re.draw(s, x0 + border_size, y0 + border_size, item_color);
+    // re.draw(s, x0 + border_size, y0 + border_size, item_color1);
+
+    int change_color = 0;
+
+    for(int i = 0; i < lines; i++)
+    {
+        for(int j = 0; j < columns; j++)
+        {
+            change_color = !change_color;
+            colors[i][j] = change_color;
+            if(change_color) draw_item(i, j, item_color1);
+            else draw_item(i, j, item_color2);
+        }
+        if(columns % 2 == 0) change_color = !change_color;
+    }
 }
 
 void Ground::draw_item(int i, int j, int color)

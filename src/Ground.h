@@ -12,7 +12,9 @@ private:
     int border_color;
     int item_size;
 
-    int item_color;
+    int item_color1;
+    int item_color2;
+    int colors[800][800] = {{0}};
 
     int lines;
     int columns;
@@ -26,19 +28,20 @@ public:
     Ground(int _w, int _h, 
            int _border_size, int _item_size, 
            int _border_color = 0x00, 
-           int _item_color = 0xFF00):
+           int _item_color1 = 0xFF00, int _item_color2 = 0x01B101):
            Rectangle(_w, _h), border_size(_border_size), 
            item_size(_item_size), border_color(_border_color), 
-           item_color(_item_color), 
+           item_color1(_item_color1), item_color2(_item_color2),
            s(nullptr), x0(-1), y0(-1)
     {
         lines = (get_h() - 2 * border_size) / item_size;
         columns = (get_w() - 2 * border_size) / item_size;
     }
 
-    int get_item_color(void) const
+    int get_item_color(int _i, int _j) const
     {
-        return item_color;
+        if(colors[_i][_j]) return item_color1;
+        else return item_color2;
     }
 
     void draw(Screen *_s, int _x0 = 0, int _y0 = 0);
@@ -47,7 +50,10 @@ public:
 
     void draw_item(int i, int j)
     {
-        draw_item(i, j, item_color);
+        int tmp_color = 0;
+        if(colors[i][j]) tmp_color = item_color1;
+        else tmp_color = item_color2;
+        draw_item(i, j, tmp_color);
     }
 };
 
