@@ -48,8 +48,6 @@ void Snake::move()
         body.pop_back();
         body.push_front(b1);
 
-
-//she
         draw();
     }
 }
