@@ -84,9 +84,14 @@ private:
 public:
     Snake(Ground *g = nullptr);
 
+    ~Snake()
+    {
+        delete t;
+    }
+
     void draw();
 
     void move(void); //蛇移动的线程函数
-}
+};
 
 #endif
