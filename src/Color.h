@@ -1,11 +1,11 @@
 #ifndef __COLOR_H__
 #define __COLOR_H__
 
-typedef struct Point
+typedef struct
 {
     int x;
     int y;
-};
+} Point;
 
 
 extern int get_color_line(Point _begin, Point _target, int _x);

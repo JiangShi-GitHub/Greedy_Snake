@@ -6,6 +6,7 @@
 #include <thread>
 #include <utility>
 #include "Ground.h"
+#include "main.h"
 
 class Body_item
 {
@@ -100,6 +101,32 @@ public:
     void move(void); //蛇移动的线程函数
 
     bool is_part_of_body(int _i, int _j);
+
+    void UpdateEvent(InputEvent e);
+
+    bool is_same(MovDir _dir) const
+    {
+        if(dir == _dir)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool is_opponent(MovDir _dir) const
+    {
+        if((dir == MovDir_Left && _dir == MovDir_Right) ||
+           (dir == MovDir_Right && _dir == MovDir_Left) ||
+           (dir == MovDir_Up && _dir == MovDir_Down) || 
+           (dir == MovDir_Down && _dir == MovDir_Up))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool can_change_dir(MovDir _dir);
 };
 
 #endif

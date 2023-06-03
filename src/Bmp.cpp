@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include "Bmp.h"
-#include "GameCtl.h"
+#include "Ground.h"
+
+extern Ground *g ;
 
 /*
     bmp_diaplay：在屏幕坐标点（x0，y0）处显示一张bmp图片
@@ -62,7 +64,7 @@ void bmp_display(const char* bmp_file, int x0, int y0)
     total_line_bytes = valid_line_bytes + laizi;
     total_bytes = total_line_bytes * abs(height);
 
-    char* p = malloc(total_bytes);
+    char* p = (char*)malloc(total_bytes);
     lseek(fd, 54, SEEK_SET);
     read(fd, p, total_bytes);
 
@@ -82,7 +84,7 @@ void bmp_display(const char* bmp_file, int x0, int y0)
                 a = p[i++];
             }
             color = (a << 24) | (r << 16) | (g << 8) | b;
-            GameCtl::g -> set_item_color(x, y, color);
+            // g -> set_item_color(x, y, color);
         }
         i += laizi;
     }

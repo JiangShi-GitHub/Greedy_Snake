@@ -60,6 +60,16 @@ public:
         else tmp_color = item_color2;
         draw_item(i, j, tmp_color);
     }
+
+    int get_lines(void) const
+    {
+        return lines;
+    }
+
+    int get_columns(void) const
+    {
+        return columns;
+    }
 };
 
 #endif
