@@ -61,3 +61,12 @@ void Snake::move()
         draw();
     }
 }
+
+bool Snake::is_part_of_body(int _i, int _j)
+{
+    for(auto fi:body)
+    {
+        if(fi.get_i() == _i && fi.get_j() == _j) return 1;
+    }
+    return 0;
+}

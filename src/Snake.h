@@ -97,6 +97,8 @@ public:
     void draw();
 
     void move(void); //蛇移动的线程函数
+
+    bool is_part_of_body(int _i, int _j);
 };
 
 #endif
