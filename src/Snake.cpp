@@ -148,6 +148,11 @@ bool Snake::can_change_dir(MovDir _dir )
         return true;
     }
 
+    if (_dir == MovDir_Unkown)
+    {
+        return false;
+    }
+
     auto it = body.begin(); //it指向body这个链表中的第一个元素的迭代器
                             //iterator(“迭代器是像指针一样的东西”)
     Body_item b1 = *it;
