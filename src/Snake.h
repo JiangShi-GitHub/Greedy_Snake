@@ -61,7 +61,8 @@ enum MovDir
 enum Color_t
 {
     Color_Red = 0xFF0000,
-    Color_Green = 0x00FF00
+    Color_Green = 0x00FF00,
+    Color_Blue = 0x0000FF,
 };
 
 class Snake

@@ -25,10 +25,15 @@ void Ground::draw(Screen *_s, int _x0, int _y0)
     {
         for(int j = 0; j < columns; j++)
         {
-            change_color = !change_color;
-            colors[i][j] = change_color;
-            if(change_color) draw_item(i, j, item_color1);
-            else draw_item(i, j, item_color2);
+            if(colors[i][j] != (1 || 0)) draw_item(i, j, colors[i][j]);
+            else
+            {
+                change_color = !change_color;
+                colors[i][j] = change_color;
+                if(change_color) draw_item(i, j, item_color1);
+                else draw_item(i, j, item_color2);
+            }
+            
         }
         if(columns % 2 == 0) change_color = !change_color;
     }

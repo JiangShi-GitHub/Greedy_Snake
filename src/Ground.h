@@ -44,6 +44,11 @@ public:
         else return item_color2;
     }
 
+    void set_item_color(int _i, int _j, int _color)
+    {
+        colors[_i][_j] = _color;
+    }
+
     void draw(Screen *_s, int _x0 = 0, int _y0 = 0);
 
     void draw_item(int i, int j, int color);

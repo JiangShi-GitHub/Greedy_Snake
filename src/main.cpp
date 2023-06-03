@@ -4,8 +4,10 @@
 #include "Rectangle.h"
 #include "Ground.h"
 #include "Snake.h"
+#include "GameCtl.h"
 
 using namespace std;
+
 
 int main()
 {
@@ -16,6 +18,10 @@ int main()
     g -> draw(s, 0, 0);
 
     Snake *sn = new Snake(g, 0xB20101);
+
+    GameCtl::s = s;
+    GameCtl::g = g;
+    GameCtl::sn = sn;
 
     sn->move();
 
