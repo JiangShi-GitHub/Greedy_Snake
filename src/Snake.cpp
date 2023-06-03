@@ -66,6 +66,7 @@ void Snake::move()
             std::cout << ((i < 0) || (i >= N) || (j < 0) || (j >= M) || is_part_of_body(i, j))<< std::endl;
             std::cout << " i= " << i << " N= " << N << " j= " << j << " M= " << M << " body= "<< is_part_of_body(i, j)<< std::endl;
             std::cout << "Game is Over!!!" << std::endl;
+            delete k;
             break;
         }
 
