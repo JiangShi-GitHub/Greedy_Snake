@@ -159,18 +159,22 @@ bool Snake::can_change_dir(MovDir _dir )
     {
         return false;
     }
-    // else if ()
-    // {
-    //     return false;
-    // }
-    // else if ()
-    // {
-    //     return false;
-    // }
-    // else if()
-    // {
-    //     return false;
-    // }
+    else if ((b1.get_i() == b2.get_i()) && (b2.get_j() == b1.get_j() - 1) &&
+        (_dir == MovDir_Left))
+    {
+        return false;
+    }
+    else if ((b1.get_j() == b2.get_j()) && (b2.get_i() == b1.get_i() + 1) &&
+        (_dir == MovDir_Down))
+    {
+        return false;
+    }
+    else if((b1.get_j() == b2.get_j()) && (b2.get_i() == b1.get_i() - 1) &&
+        (_dir == MovDir_Up))
+    {
+        return false;
+    }
+
 
     return true;
 }
