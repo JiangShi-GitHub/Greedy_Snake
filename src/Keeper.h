@@ -84,9 +84,10 @@ public:
     void feed(); //“喂养线程”
 
     void GenerateFoods(); //生成食物
+
     void ClearFoods(); //清理食物
 
-
+    void disappearFoods(int _x);
 
     bool is_food(int i, int j)
     {

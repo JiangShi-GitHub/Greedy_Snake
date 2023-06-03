@@ -6,6 +6,7 @@
 #include "Keeper.h"
 #include "Ground.h"
 #include "Snake.h"
+#include "Color.h"
 
 extern Ground *g ;//
 extern Snake *sn;
@@ -18,7 +19,13 @@ void Keeper::feed(void)
         GenerateFoods();
 
         //2. sleep
-        std::this_thread::sleep_for( std::chrono::milliseconds(interval));
+        int time_cnt = interval;
+        while(time_cnt--)
+        {
+            disappearFoods(time_cnt);
+            std::this_thread::sleep_for( std::chrono::milliseconds(1));
+        }
+        
 
 
         //3. 清理 “食物”
@@ -71,7 +78,7 @@ void Keeper::ClearFoods(void)
 {
     std::unique_lock< std::recursive_mutex > l (m);
 
-    for(Food f: foods)
+    for(Food f:foods)
     {
         FoodState state = f.get_state();
         if (state != Food_Eatten)
@@ -81,4 +88,16 @@ void Keeper::ClearFoods(void)
     }
 
     foods.clear(); //把链表上所有元素都“干掉”
+}
+
+void Keeper::disappearFoods(int _x)
+{
+    for(Food f:foods)
+    {
+        FoodState state = f.get_state();
+        if (state != Food_Eatten)
+        {
+            g->draw_item( f.get_i(), f.get_j(), get_color(g -> get_item_color(f.get_i(), f.get_j()), Color_Blue, 0, interval, _x));
+        }
+    }
 }
