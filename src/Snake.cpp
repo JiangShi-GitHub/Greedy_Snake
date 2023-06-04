@@ -53,7 +53,9 @@ void Snake::move()
         std::unique_lock<std::recursive_mutex> l(m);
 
         //再移动
-        Body_item b1(body.front().get_i() + dir_num[dir].first, body.front().get_j() + dir_num[dir].second, head_color); //定义头
+        Body_item b1(body.front().get_i() + dir_num[dir].first, 
+                    body.front().get_j() + dir_num[dir].second, 
+                    head_color); //定义头
         body.front().set_c(color); //改变旧头颜色为身体颜色
 
         int N = g -> get_lines();

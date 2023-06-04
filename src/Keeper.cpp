@@ -21,7 +21,6 @@ void Keeper::feed(void)
         //1. 生成“食物”
         GenerateFoods();
         ifor -> draw_progress_bar(717, 214, 32, 149);
-
         //2. sleep
         int time_cnt = interval;
         while(time_cnt--)
@@ -29,14 +28,9 @@ void Keeper::feed(void)
             disappearFoods(time_cnt);
             if(time_cnt % 50 == 0 || time_cnt == 1) ifor -> draw_progress_vanish(717, 214, 32, 149 - (double)time_cnt / (double)interval * 149.0);
             std::this_thread::sleep_for( std::chrono::milliseconds(1));
-        }
-        
-
-
+        }   
         //3. 清理 “食物”
         ClearFoods();
-
-       
     }
 }
 
@@ -45,7 +39,6 @@ void Keeper::feed(void)
 
 void Keeper::GenerateFoods(void)
 {
-
     // time( nullptr ) 获取当前的时间
     // 每次运行该程序时的时间是不相同的
     // 这里  srandom( time(nullptr) ) 设置的随机数种子 就不相同
@@ -53,7 +46,6 @@ void Keeper::GenerateFoods(void)
     srandom ( time(nullptr) ); //设置随机数种子
 
     std::unique_lock< std::recursive_mutex > l (m);
-
 
     int N = g->get_lines(); //“草坪上有多少行”
     int M = g->get_columns(); //"草坪上有多少列"
@@ -67,10 +59,8 @@ void Keeper::GenerateFoods(void)
         {
             continue;
         }
-
         int color = Color_Blue;
         Food f(i,j, color);
-
 
         foods.push_back(f);
 
