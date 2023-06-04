@@ -107,4 +107,8 @@ extern char yu_chu[]; //宇
 
 extern char chen_chu[]; //辰
 
+/*
+    宋体小一 
+*/
+
 #endif
