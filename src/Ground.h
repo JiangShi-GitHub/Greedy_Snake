@@ -40,8 +40,7 @@ public:
 
     int get_item_color(int _i, int _j) const
     {
-        if(colors[_i][_j]) return item_color1;
-        else return item_color2;
+        return colors[_i][_j];
     }
 
     void set_item_color(int _i, int _j, int _color)
@@ -56,8 +55,7 @@ public:
     void draw_item(int i, int j)
     {
         int tmp_color = 0;
-        if(colors[i][j]) tmp_color = item_color1;
-        else tmp_color = item_color2;
+        tmp_color = colors[i][j];
         draw_item(i, j, tmp_color);
     }
 

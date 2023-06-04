@@ -4,10 +4,14 @@
 #include <algorithm>
 #include "Infor.h"
 #include "Snake.h"
+#include "Screen.h"
+#include "Color.h"
 #include "hanzi.h"
 #include "Bmp.h"
 
 extern Snake *sn;
+
+extern Screen *s;
 //640 0
 Infor::Infor(const char* _File, int _x, int _y)
 {
@@ -62,4 +66,38 @@ int Infor::read_score()
         get.pop_back();
     }
     return res;
+}
+
+int Infor::get_now_score()
+{
+    return now_score;
+}
+
+int Infor::get_best_score()
+{
+    return best_score;
+}
+
+void Infor::draw_progress_bar(int _x, int _y, int _w, int _h, int _begin_color, int _target_color)
+{
+    int x, y;
+    for(y = _y; y < _y + _h; y++)
+    {
+        for(x = _x; x < _x + _w; x++)
+        {
+            s -> draw_point(x, y, get_color(_begin_color, _target_color, _y, _y + _h, y));
+        }
+    }
+}
+
+void Infor::draw_progress_vanish(int _x, int _y, int _w, int _h)
+{
+    int x, y;
+    for(y = _y; y < _y + _h; y++)
+    {
+        for(x = _x; x < _x + _w; x++)
+        {
+            s -> draw_point(x, y, 0xFFFFFF);
+        }
+    }
 }

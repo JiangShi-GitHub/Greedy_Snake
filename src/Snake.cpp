@@ -1,8 +1,10 @@
 #include <mutex>
 #include "Snake.h"
+#include "Infor.h"
 #include "Keeper.h"
 
 extern Keeper *k;
+extern Infor *ifor;
 
 Snake::Snake(Ground *_g, int _init_size, int _color, int _head_color)
 {
@@ -13,7 +15,6 @@ Snake::Snake(Ground *_g, int _init_size, int _color, int _head_color)
     speed = 400;
     acc = 50;
     init_size = _init_size;
-    // Body_item b1(10, 10, color), b2(10, 11, color);
 
     for(int i = 0; i < init_size; i++)
     {
@@ -63,6 +64,7 @@ void Snake::move()
             std::cout << ((i < 0) || (i >= N) || (j < 0) || (j >= M) || is_part_of_body(i, j))<< std::endl;
             std::cout << " i= " << i << " N= " << N << " j= " << j << " M= " << M << " body= "<< is_part_of_body(i, j)<< std::endl;
             std::cout << "Game is Over!!!" << std::endl;
+            if(ifor -> get_now_score() > ifor -> get_best_score()) ifor -> write_score(ifor -> get_now_score());
             delete k;
             break;
         }
@@ -72,6 +74,7 @@ void Snake::move()
         if(k -> is_food(i, j))
         {
             k -> eat(i, j);
+            ifor -> now_score_show();
         }
         else
         {

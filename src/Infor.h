@@ -23,6 +23,14 @@ public:
     void write_score(int _score);
 
     int read_score();
+
+    int get_now_score();
+
+    int get_best_score();
+
+    void draw_progress_bar(int _x, int _y, int _w, int _h, int _begin_color = 0x00FFDA, int _target_color = 0xFF0000);
+
+    void draw_progress_vanish(int _x, int _y, int _w, int _h);
 };
 
 

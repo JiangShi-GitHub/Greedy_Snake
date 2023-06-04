@@ -1,4 +1,6 @@
+#include <iostream>
 #include "Ground.h"
+#include "Bmp.h"
 
 void Ground::draw(Screen *_s, int _x0, int _y0)
 {
@@ -19,24 +21,17 @@ void Ground::draw(Screen *_s, int _x0, int _y0)
 
     // re.draw(s, x0 + border_size, y0 + border_size, item_color1);
 
-    int change_color = 0;
+    bmp_analyze("laisha.bmp");
 
     for(int i = 0; i < lines; i++)
     {
         for(int j = 0; j < columns; j++)
         {
-            // if(colors[i][j] != (1 || 0)) draw_item(i, j, colors[i][j]);
-            // else
-            // {
-                change_color = !change_color;
-                colors[i][j] = change_color;
-                if(change_color) draw_item(i, j, item_color1);
-                else draw_item(i, j, item_color2);
-            // }
-            
+            draw_item(i, j, colors[i][j]);   
         }
-        if(columns % 2 == 0) change_color = !change_color;
     }
+
+    std::cout << lines << " " << columns << std::endl;
 }
 
 void Ground::draw_item(int i, int j, int color)
