@@ -16,7 +16,7 @@ extern Screen *s;
 Infor::Infor(const char* _File, int _x, int _y)
 {
     bmp_display(_File, _x, _y);
-    best_score = read_score();
+    read_score();
     best_score_show();
     now_score = 0;
     now_score_show();
@@ -41,14 +41,14 @@ void Infor::write_score(int _score)
     ofs.close();
 }
 
-int Infor::read_score()
+void Infor::read_score()
 {
     std::ifstream ifs;
     ifs.open("./score.txt", std::ios::in);
     if(!ifs.is_open())
     {
         std::cout << "Wrong to read file" << std::endl;
-        return 0;
+        return;
     }
     char buf[1024] = {0};
     std::string get;
@@ -65,7 +65,7 @@ int Infor::read_score()
         res += (get[get.size() - 1] - '0');
         get.pop_back();
     }
-    return res;
+    best_score = res;
 }
 
 int Infor::get_now_score()
