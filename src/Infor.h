@@ -22,7 +22,7 @@ public:
 
     void write_score(int _score);
 
-    int read_score();
+    void read_score();
 
     int get_now_score();
 

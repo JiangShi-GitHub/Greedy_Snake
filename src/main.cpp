@@ -73,6 +73,8 @@ int main()
 
     k = new Keeper();
     dev1 = new InputDev(sn, "/dev/input/event0");
+
+    system("madplay -r ./*.mp3 &");
    
     while (1)
     {

@@ -1,4 +1,5 @@
 #include <mutex>
+#include <stdlib.h>
 #include "Snake.h"
 #include "Infor.h"
 #include "Keeper.h"
@@ -66,10 +67,13 @@ void Snake::move()
             std::cout << ((i < 0) || (i >= N) || (j < 0) || (j >= M) || is_part_of_body(i, j))<< std::endl;
             std::cout << " i= " << i << " N= " << N << " j= " << j << " M= " << M << " body= "<< is_part_of_body(i, j)<< std::endl;
             std::cout << "Game is Over!!!" << std::endl;
+            system("killall -9 madplay &");
             k -> ClearFoods();
             if(ifor -> get_now_score() > ifor -> get_best_score())
             {
                 ifor -> write_score(ifor -> get_now_score());
+                ifor -> read_score();
+                ifor -> best_score_show();
                 bmp_display("best_score.bmp", 0, 0);
                 change_color(0x000000, 0xFFC8CD);
                 digital_display(357, 370, ifor -> get_now_score());
