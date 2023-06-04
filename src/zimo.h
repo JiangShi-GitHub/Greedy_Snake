@@ -110,5 +110,10 @@ extern char chen_chu[]; //辰
 /*
     宋体小一 
 */
+extern char tan_syi[]; //贪
+
+extern char chi_syi[]; //吃
+
+extern char she_syi[]; //蛇
 
 #endif
