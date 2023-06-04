@@ -67,7 +67,7 @@ int main()
     g = new Ground(640, 480, 5, 5, 0xFF0000, 0xFFFFFF, 0xD2D2D0);
     g->draw(s, pic, 0, 0);
 
-    sn = new Snake(g, 2, 0xB20101);
+    sn = new Snake(g, 5, 0xB20101);
 
     ifor = new Infor("infor.bmp", 640, 0);
 
