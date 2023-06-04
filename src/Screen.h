@@ -33,7 +33,21 @@ public:
         }
     }
 
-    
+    void clear_area(int x0, int y0, int x1, int y1, int color)
+    {
+        if(x0 < x1)
+        {
+            switch(x0, x1);
+            switch(y0, y1);
+        }
+        for(int j = y0; j < y1; j++)
+        {
+            for(int i = x0; i < x1; i++)
+            {
+                draw_point(i, j, color);
+            }
+        }
+    }
 };
 
 #endif
