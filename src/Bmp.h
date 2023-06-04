@@ -8,4 +8,5 @@
 */
 extern void bmp_display(const char* bmp_file, int x0, int y0);
 
+extern void bmp_analyze(const char* bmp_file);
 #endif
