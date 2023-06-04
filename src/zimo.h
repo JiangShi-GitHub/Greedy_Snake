@@ -116,4 +116,10 @@ extern char chi_syi[]; //吃
 
 extern char she_syi[]; //蛇
 
+extern char da_syi[]; //大
+
+extern char zuo_syi[]; //作
+
+extern char zhan_syi[]; //战
+
 #endif
