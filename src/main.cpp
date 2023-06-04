@@ -17,7 +17,7 @@ Snake* sn = nullptr;
 Keeper* k = nullptr;
 InputDev *dev1 = nullptr;
 Rectangle *r = nullptr;
-Infor *i = nullptr;
+Infor *ifor = nullptr;
 
 int main()
 {   
@@ -29,7 +29,7 @@ int main()
 
     sn = new Snake(g, 2, 0xB20101);
 
-    i = new Infor("infor.bmp", 640, 0);
+    ifor = new Infor("infor.bmp", 640, 0);
 
     k = new Keeper();
     dev1 = new InputDev(sn, "/dev/input/event0");

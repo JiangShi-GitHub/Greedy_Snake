@@ -7,9 +7,12 @@
 #include "Ground.h"
 #include "Snake.h"
 #include "Color.h"
+#include "Infor.h"
 
 extern Ground *g ;//
 extern Snake *sn;
+extern Infor *ifor;
+
 void Keeper::feed(void)
 {
 
@@ -17,12 +20,14 @@ void Keeper::feed(void)
     {
         //1. 生成“食物”
         GenerateFoods();
+        ifor -> draw_progress_bar(717, 214, 32, 149);
 
         //2. sleep
         int time_cnt = interval;
         while(time_cnt--)
         {
             disappearFoods(time_cnt);
+            if(time_cnt % 50 == 0 || time_cnt == 1) ifor -> draw_progress_vanish(717, 214, 32, 149 - (double)time_cnt / (double)interval * 149.0);
             std::this_thread::sleep_for( std::chrono::milliseconds(1));
         }
         
@@ -36,7 +41,7 @@ void Keeper::feed(void)
 }
 
 
-
+//77 + 640, 214
 
 void Keeper::GenerateFoods(void)
 {

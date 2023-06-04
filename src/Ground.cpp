@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Ground.h"
 
 void Ground::draw(Screen *_s, int _x0, int _y0)
@@ -37,6 +38,8 @@ void Ground::draw(Screen *_s, int _x0, int _y0)
         }
         if(columns % 2 == 0) change_color = !change_color;
     }
+
+    std::cout << lines << " " << columns << std::endl;
 }
 
 void Ground::draw_item(int i, int j, int color)
