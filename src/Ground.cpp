@@ -2,7 +2,7 @@
 #include "Ground.h"
 #include "Bmp.h"
 
-void Ground::draw(Screen *_s, int _x0, int _y0)
+void Ground::draw(Screen *_s, const char* _File, int _x0, int _y0)
 {
     s = _s;
     x0 = _x0;
@@ -21,7 +21,7 @@ void Ground::draw(Screen *_s, int _x0, int _y0)
 
     // re.draw(s, x0 + border_size, y0 + border_size, item_color1);
 
-    bmp_analyze("laisha.bmp");
+    bmp_analyze(_File);
 
     for(int i = 0; i < lines; i++)
     {
