@@ -48,7 +48,7 @@ public:
         colors[_i][_j] = _color;
     }
 
-    void draw(Screen *_s, int _x0 = 0, int _y0 = 0);
+    void draw(Screen *_s, const char* _File, int _x0 = 0, int _y0 = 0);
 
     void draw_item(int i, int j, int color);
 
