@@ -8,7 +8,7 @@
 #include "Bmp.h"
 #include "Ground.h"
 
-extern Ground *g ;
+extern Screen *s ;
 
 /*
     bmp_diaplay：在屏幕坐标点（x0，y0）处显示一张bmp图片
@@ -84,7 +84,7 @@ void bmp_display(const char* bmp_file, int x0, int y0)
                 a = p[i++];
             }
             color = (a << 24) | (r << 16) | (g << 8) | b;
-            // g -> set_item_color(x, y, color);
+            s -> draw_point(x0 + x, y0 + height - 1 - y, color);
         }
         i += laizi;
     }

@@ -7,7 +7,7 @@
 extern Screen *s;
 
 int draw_color = 0x000000;
-int back_color = 0xFFF1C0;
+int back_color = 0xFFFFFF;
 int old_wei = 0;
 
 /*
@@ -18,7 +18,7 @@ int old_wei = 0;
 void color_init()
 {
     draw_color = 0x000000;
-    back_color = 0xFFF1C0;
+    back_color = 0xFFFFFF;
 }
 
 /*
@@ -145,30 +145,26 @@ void show_num(int x0, int y0, int num)
     返回值：
         无。
 */
-void digital_display(int x0, int y0, double num)
+void digital_display(int x0, int y0, int num)
 {   
-    int zh[9], i = 8;
-    int zheng = (int)num;
-    double xiao = num - zheng;
-    int wei = 0;
-    //printf("%d\n%lf\n", zheng, xiao);
-    while(zheng > 0)
+    if(num == 0) show_num(x0, y0, num);
+    else
     {
-        zh[i--] = zheng % 10;
-        zheng = zheng / 10;
-        wei++;
-    }
+        int zh[9], i = 8;
+        int zheng = num;
+        //printf("%d\n%lf\n", zheng, xiao);
+        while(zheng > 0)
+        {
+            zh[i--] = zheng % 10;
+            zheng = zheng / 10;
+        }
 
-    if(wei < old_wei)
-    {
-        s -> clear_area(x0 + (wei + 3) * size_er[0], y0, x0 + (old_wei + 3) * size_er[0], y0 + size_er[1], back_color);
-    }
-
-    int x = x0;
-    for(int j = i + 1; j <= 8; j++)
-    {
-        show_num(x, y0, zh[j]);
-        x += size_er[0];
-        //printf("%d\n", zh[j]);
+        int x = x0;
+        for(int j = i + 1; j <= 8; j++)
+        {
+            show_num(x, y0, zh[j]);
+            x += size_er[0];
+            //printf("%d\n", zh[j]);
+        }
     }
 }

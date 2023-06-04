@@ -72,7 +72,11 @@ private:
     std::list<Body_item> body;//"蛇身"
 
     int color;
+
     int head_color;
+
+    int init_size;
+
     MovDir dir;
 
     int speed;//蛇移动的速度，每隔 多少毫秒 移动一格
@@ -89,7 +93,7 @@ private:
     std::pair<int, int> dir_num[5] = {{0, 0}, {0 ,-1}, {0, 1}, {-1, 0}, {1, 0}};
 
 public:
-    Snake(Ground *g = nullptr, int _color = Color_Red, int _head_color = 0x049C12);
+    Snake(Ground *g = nullptr, int _init_size = 2, int _color = Color_Red, int _head_color = 0x049C12);
 
     ~Snake()
     {
@@ -127,6 +131,16 @@ public:
     }
 
     bool can_change_dir(MovDir _dir);
+
+    int snake_size()
+    {
+        return body.size();
+    }
+
+    int get_init_size()
+    {
+        return init_size;
+    }
 };
 
 #endif

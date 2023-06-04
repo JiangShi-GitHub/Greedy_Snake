@@ -7,16 +7,22 @@ private:
     int draw_color;
 
     int back_color;
+
+    int now_score;
+
+    int best_score;
 public:
-    Infor(/* args */);
+    Infor(const char* _File, int _x = 0, int _y = 0);
     
-    void tital(int _x, int _y);
+    void show(int _x, int _y);
 
-    void store();
+    void now_score_show();
 
-    void score_show(int _x0, int _y0);
+    void best_score_show();
 
+    void write_score(int _score);
 
+    int read_score();
 };
 
 

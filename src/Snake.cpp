@@ -4,7 +4,7 @@
 
 extern Keeper *k;
 
-Snake::Snake(Ground *_g, int _color, int _head_color)
+Snake::Snake(Ground *_g, int _init_size, int _color, int _head_color)
 {
     g = _g;
     color = _color;
@@ -12,13 +12,10 @@ Snake::Snake(Ground *_g, int _color, int _head_color)
     dir = MovDir_Right;
     speed = 400;
     acc = 50;
-
+    init_size = _init_size;
     // Body_item b1(10, 10, color), b2(10, 11, color);
 
-    // body.push_back(b1);
-    // body.push_back(b2);
-
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < init_size; i++)
     {
         Body_item b1(20, 20 - i, color);
         body.push_back(b1);

@@ -38,7 +38,7 @@ extern void hanzi_display_wh(int x0, int y0, int w, int h, char data[]);
     返回值：
         无。
 */
-extern void digital_display(int x0, int y0, double num);
+extern void digital_display(int x0, int y0, int num);
 
 /*
     tital_display：显示标题的函数
