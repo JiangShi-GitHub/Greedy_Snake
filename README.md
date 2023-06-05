@@ -34,6 +34,7 @@
 ![image](others/Sample.jpg)
 
 还有多种界面地图，内部代码实现为遍历目录并且检测结尾为“.bmp”的文件，所以可以直接添加图片而不用改变代码：
+
 ![image](pictures/chuyin.bmp)
 
 ![image](pictures/chuyin2.bmp)
