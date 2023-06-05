@@ -27,13 +27,13 @@ double get_color_line(Point _begin, Point _target, double _x)
 
 int get_color(int begin_color, int target_color, double mini, double maxi, double _x)
 {
-    double bB = begin_color & 0xFF, bG = (begin_color >> 8) & 0xFF, bR = (begin_color >> 16) & 0xFF;
-    double tB = target_color & 0xFF, tG = (target_color >> 8) & 0xFF, tR = (target_color >> 16) & 0xFF;
+    double bB = begin_color & 0xFF, bG = (begin_color >> 8) & 0xFF, bR = (begin_color >> 16) & 0xFF; //得到起始颜色的R、G、B
+    double tB = target_color & 0xFF, tG = (target_color >> 8) & 0xFF, tR = (target_color >> 16) & 0xFF; //得到结束颜色的R、G、B
  
-    int rB = get_color_line({mini, bB}, {maxi, tB}, _x);
-    int rG = get_color_line({mini, bG}, {maxi, tG}, _x);
-    int rR = get_color_line({mini, bR}, {maxi, tR}, _x);
+    int rB = get_color_line({mini, bB}, {maxi, tB}, _x); //求取R直线
+    int rG = get_color_line({mini, bG}, {maxi, tG}, _x); //求取G直线
+    int rR = get_color_line({mini, bR}, {maxi, tR}, _x); //求取B直线
     
-    int result = (rR << 16) | (rG << 8) | rB;
+    int result = (rR << 16) | (rG << 8) | rB; //合成颜色
     return result;
 }
