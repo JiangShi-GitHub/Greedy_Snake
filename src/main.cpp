@@ -28,30 +28,28 @@ Infor *ifor = nullptr;
 
 std::string Rand_background()
 {
-    std::vector<std::string> back;
-    back.clear();
-    const char* path = "./backgrounds/";
-    DIR *dp = opendir(path);
-    struct dirent *p;
+    std::vector<std::string> back; //存放背景名称
+    back.clear(); //清空一下Vector
+    const char* path = "./backgrounds/"; //图片地址
+    DIR *dp = opendir(path); //打开文件目录
+    struct dirent *p; //结构体指针
     int back_cnt = 0;
 
-    while(p = readdir(dp))
+    while(p = readdir(dp)) //遍历目录
     {
-        if(p -> d_type == DT_REG)
+        if(p -> d_type == DT_REG) //如果为文件
         {
-            if(strstr(p ->d_name, ".bmp"))
+            if(strstr(p ->d_name, ".bmp")) //如果名称包含“.bmp”
             {
-                back.push_back(p -> d_name);
+                back.push_back(p -> d_name); //压入Vector
                 back_cnt++;
             }
         }
     }
 
     srandom ( time(nullptr) ); //设置随机数种子
-    std::string rand_back = back[rand() % back_cnt];
-    std::string res = path + rand_back;
-    std::cout << res << std::endl;
-    // std::string res = back[0];
+    std::string rand_back = back[rand() % back_cnt]; //随机一个文件
+    std::string res = path + rand_back; //加上路径
     return res;
 }
 

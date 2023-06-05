@@ -33,18 +33,18 @@ void Infor::best_score_show()
     digital_display(682, 415, best_score);
 }
 
-void Infor::write_score(int _score)
+void Infor::write_score(int _score) //写入
 {
     std::ofstream ofs;
-    ofs.open("./score.txt", std::ios::out);
+    ofs.open("./score.txt", std::ios::out); //路径，覆盖写入
     ofs << _score;
     ofs.close();
 }
 
-void Infor::read_score()
+void Infor::read_score() //读取
 {
     std::ifstream ifs;
-    ifs.open("./score.txt", std::ios::in);
+    ifs.open("./score.txt", std::ios::in); //路径，全部读取
     if(!ifs.is_open())
     {
         std::cout << "Wrong to read file" << std::endl;
@@ -52,14 +52,14 @@ void Infor::read_score()
     }
     char buf[1024] = {0};
     std::string get;
-    while(ifs >> buf);
-    get = buf;
+    while(ifs >> buf); //写入到buf里
+    get = buf; //转存到string方便处理
     ifs.close();
     
     int res = 0;
-    std::reverse(get.begin(), get.end());
+    std::reverse(get.begin(), get.end()); //反转string
     // cout << get << endl;
-    while(get.size() > 0)
+    while(get.size() > 0) //将string处理成int
     {
         res *= 10;
         res += (get[get.size() - 1] - '0');
